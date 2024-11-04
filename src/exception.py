@@ -1,13 +1,15 @@
 import sys
+import logging
 
 def error_message_detail(error , error_details:sys) :
-    _,_, exc_tb = error.detail.exc_info()
-    file_name = exc_tb.tb_frame.f_code.co_filename
-    error_message = "Error occured in the python script [{0}] Line Number [{1}] error message [{2}]".format(
-        file_name,exc_tb.tb_lineno , str(error)
-    
+    _,_, exc_tb = error_details.exc_info()
+    file_name  = exc_tb.tb_frame.f_code.co_filename
+    error_message = "Error occured in python Script name [{0}] Line number [{1}] error Message [{2}]".format(
+        file_name , exc_tb.tb_lineno , str(error)
 
     )
+
+    return error_message
 
 
 
@@ -18,3 +20,5 @@ class CustomException(Exception):
 
     def __str__(self):
         return self.error_messgae
+
+
