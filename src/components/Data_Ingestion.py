@@ -9,6 +9,8 @@ class DataIngestionConfig :
     train_data_path = os.path.join('artifact', "train.csv")
     test_data_path = os.path.join('artifact' , "test.csv")
     raw_data_path = os.path.join('artifact', "data.csv")
+   
+
 
 
 class DataIngestion :
@@ -16,6 +18,7 @@ class DataIngestion :
         self.ingestionconfig = DataIngestionConfig()
 
     def initiate_data_ingestion(self):
+       
        
         
         df = pd.read_csv('Notebook\data\stud.csv')
@@ -27,6 +30,7 @@ class DataIngestion :
         train_set , test_set = train_test_split(df , test_size= 0.2 , random_state= 42 )
         train_set.to_csv(self.ingestionconfig.train_data_path, index = False )
         test_set.to_csv(self.ingestionconfig.test_data_path , index = False )
+       
 
         
 
@@ -34,6 +38,7 @@ class DataIngestion :
                 self.ingestionconfig.train_data_path,
                 self.ingestionconfig.test_data_path,
                 self.ingestionconfig.raw_data_path
+                
             )
 
      
