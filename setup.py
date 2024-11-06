@@ -1,31 +1,20 @@
-from setuptools import find_packages , setup
+
 from typing import List
 
+from setuptools import find_packages, setup
 
-HYPEN_E_DOT = "-e ."
-def get_requirements(file_path:str) -> List[str] :
-    '''
-    this function will return the list of requirements 
-    '''
-    reuirements = []
-    with open(file_path) as file_obj :
-        requirements = file_obj.readlines()
-        requirements = [req.replace('/n' , " ") for req in requirements]
-
-        if HYPEN_E_DOT in requirements:
-            requirements.remove(HYPEN_E_DOT)
-
+def get_requirements(file_path):
+    with open(file_path) as file:
+        requirements = file.read().splitlines()
+        # Remove '-e .' if it's included in requirements.txt
+        requirements = [req for req in requirements if req != "-e ."]
     return requirements
 
-
-
 setup(
-    name= 'End to End ML Projects',
-    version= '0.0.1',
+    name='End_to_End_ML_Projects',  # Removed spaces for compatibility
+    version='0.0.1',
     author="Harsh Kumar",
     author_email="replytobambam@gmail.com",
-    packages= find_packages(),
-    install_requires = get_requirements('requirements.txt')
-
-
+    packages=find_packages(),
+    install_requires=get_requirements('requirements.txt')  # Reads requirements from file
 )
